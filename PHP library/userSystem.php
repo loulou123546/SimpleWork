@@ -26,6 +26,7 @@ $SW_userSystem_colum_id = "ID";
 
 
 function SW_user_setup ($utilisateur, $dbname, $tablename, $colpseudo, $colmdp, $colid){
+	global $SW_userSystem_utilisateur, $SW_userSystem_dbname, $SW_userSystem_tablename, $SW_userSystem_column_pseudo, $SW_userSystem_colum_mdp, $SW_userSystem_colum_id;
 	$SW_userSystem_utilisateur = $utilisateur;
 	$SW_userSystem_dbname = $dbname;
 	$SW_userSystem_tablename = $tablename;
@@ -35,6 +36,7 @@ function SW_user_setup ($utilisateur, $dbname, $tablename, $colpseudo, $colmdp, 
 }
 
 function SW_user_doexist ($pseudo, $mdp){
+	global $SW_userSystem_utilisateur, $SW_userSystem_dbname, $SW_userSystem_tablename, $SW_userSystem_column_pseudo, $SW_userSystem_colum_mdp, $SW_userSystem_colum_id;
 	$res = SW_mysql_SELECT(SW_mysql_addconnexion($SW_userSystem_dbname, $SW_userSystem_utilisateur), "SELECT * FROM `".$SW_tablename."` WHERE `".$SW_column_pseudo."` = '".$pseudo."' AND `".$SW_column_mdp."` = '".$mdp."'");
 	if(!empty($res[$SW_colum_pseudo])){
 		return true;
@@ -45,6 +47,7 @@ function SW_user_doexist ($pseudo, $mdp){
 }
 
 function SW_user_setSESSION ($pseudo, $mdp, $pseudoname = "userPSEUDO", $mdpname = "userMDP", $idname = "userID"){
+	global $SW_userSystem_utilisateur, $SW_userSystem_dbname, $SW_userSystem_tablename, $SW_userSystem_column_pseudo, $SW_userSystem_colum_mdp, $SW_userSystem_colum_id;
 	if(SW_user_doexist($pseudo, $mdp)){
 		$res = SW_mysql_SELECT(SW_mysql_addconnexion($SW_userSystem_dbname, $SW_userSystem_utilisateur), "SELECT * FROM `".$SW_tablename."` WHERE `".$SW_column_pseudo."` = '".$pseudo."' AND `".$SW_column_mdp."` = '".$mdp."'");
 		$_SESSION[$pseudoname] = $res[$SW_colum_pseudo];
@@ -57,6 +60,7 @@ function SW_user_setSESSION ($pseudo, $mdp, $pseudoname = "userPSEUDO", $mdpname
 }
 
 function SW_user_get ($pseudo, $mdp) {
+	global $SW_userSystem_utilisateur, $SW_userSystem_dbname, $SW_userSystem_tablename, $SW_userSystem_column_pseudo, $SW_userSystem_colum_mdp, $SW_userSystem_colum_id;
 	if(SW_user_doexist($pseudo, $mdp)){
 		$res = SW_mysql_SELECT(SW_mysql_addconnexion($SW_userSystem_dbname, $SW_userSystem_utilisateur), "SELECT * FROM `".$SW_tablename."` WHERE `".$SW_column_pseudo."` = '".$pseudo."' AND `".$SW_column_mdp."` = '".$mdp."'");
 		return $res;
