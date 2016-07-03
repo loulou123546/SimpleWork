@@ -17,9 +17,7 @@
     or if you have an php error, go on github, download the file and add       require "paths/to/go/on/your/simplework.php";
 */
 
-
-
- /* $string est la variable à sécuriser
+/* $string est la variable à sécuriser
 	
 	$type est le type de variable à retourner parmi :
 	
@@ -34,7 +32,7 @@
 	mysql,     (mysql don't display error but it juste use \          need the $bdd in $sign for $bdd->quote())
 	mysql2,    (can display error, but your DataBase is safe          need the $bdd in $sign for $bdd->quote())
  
- */
+*/
 function SW_security_add($string, $type = "text", $sign = null, $replaceby = "") {
 
 	if($type == "text"){
@@ -88,7 +86,7 @@ function SW_security_add($string, $type = "text", $sign = null, $replaceby = "")
 		return $string;
 	}
 	elseif($type == "crypted"){
-		$string2 = convert_uuencode($string);
+		$string2 = md5($string);
 		return $string2;
 	}
 	elseif($type == "replace"){
@@ -133,10 +131,6 @@ function SW_security_sub($string, $type){
 		$string = str_replace("[", "<", $string);
 		$string = str_replace("]", ">", $string);
 		$string = str_replace(".", "/", $string);
-		return $string;
-	}
-	elseif($type == "crypted"){
-		$string = convert_uudecode($string);
 		return $string;
 	}
 	elseif($type == "mail"){
