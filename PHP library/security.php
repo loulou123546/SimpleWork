@@ -36,7 +36,7 @@
  
  */
 function SW_security_add($string, $type = "text", $sign = null, $replaceby = "") {
-	
+
 	if($type == "text"){
 		$string = htmlentities($string);
 		$string = htmlspecialchars($string);
