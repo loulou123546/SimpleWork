@@ -86,7 +86,7 @@ function SW_security_add($string, $type = "text", $sign = null, $replaceby = "")
 		return $string;
 	}
 	elseif($type == "crypted"){
-		$string2 = md5($string);
+		$string2 = md5($string); // md5() ne posséde pas de fonction inverse, donc utiliser     if(md5(...) == $le_md5_encrypté) { ... }
 		return $string2;
 	}
 	elseif($type == "replace"){

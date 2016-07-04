@@ -12,5 +12,5 @@ class SWException extends Exception{
 
 // use :    throw new SWException("message",code);
 
-// for debug an SW error, go here : http://www.simple-work.tk/doc/error and enter your code error
+// for debug an SW error, go here : http://www.simple-work.tk/doc/php/error and enter your code error
 ?>
