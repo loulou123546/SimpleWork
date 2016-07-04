@@ -17,22 +17,37 @@
     or if you have an php error, go on github, download the file and add       require "paths/to/go/on/your/simplework.php";
 */
 
-/* $string est la variable à sécuriser
-	
-	$type est le type de variable à retourner parmi :
-	
-	text,      (text for display directly on screen)
-	int,       (return an int value, delete all others caracter)
-	bool,      (if is "NULL","",0 is false, else is true)
-	html,      (delete "<script>","</script>","include","require"  , very not securised)
-	html2,     (ex: <b> -> [b] and </b> -> [.b] + html)
-	crypted,   (like password)
-	replace,   (need $sign, like addcslashes($string,$sign))
-	mail,      (plain text !)
-	mysql,     (mysql don't display error but it juste use \          need the $bdd in $sign for $bdd->quote())
-	mysql2,    (can display error, but your DataBase is safe          need the $bdd in $sign for $bdd->quote())
- 
-*/
+
+class SWException extends Exception{
+
+    public function __construct($message = "erreur non enregistré", $code = 0, Exception $previous = null) {
+        
+        $erreur = "Erreur SimpleWork : ".$message." (code : ".$code.")";
+        
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+// use :    throw new SWException("message",code);
+// for debug an SW error, go here : http://www.simple-work.tk/doc/php/error and enter your code error
+
+
+// fonction permettant d'utiliser un systeme de pseudo et/ou mot de passe por acceder à une page sécuriser (ex: panel d'administration)
+function SW_display_websecurity ($mdprequire = true, $pseudorequire = false, $methodused = "post"){
+	if($mdprequire == true AND $pseudorequire == false){
+		return "<div><h1>Cette page est sécurisé</h1><h3>Merci de bien vouloir entrer un mot de passe ci-dessous</h3><form action='' method='".$methodused."'>Mot de passe : <input type='password' name='mdp' required /><br/></br><input type='submit' name='submit' value='connexion'></form></div>";
+	}
+	elseif($mdprequire == true AND $pseudorequire == true) {
+		return "<div><h1>Cette page est sécurisé</h1><h3>Merci de bien vouloir entrer un mot de passe ci-dessous</h3><form action='' method='".$methodused."'>Pseudo : <input type='text' name='pseudo' required /><br/><br/>Mot de passe : <input type='password' name='mdp' required /><br/></br><input type='submit' name='submit' value='connexion'></form></div>";
+	}
+	elseif($mdprequire == false AND $pseudorequire == true){
+		return "<div><h1>Cette page est sécurisé</h1><h3>Merci de bien vouloir entrer un mot de passe ci-dessous</h3><form action='' method='".$methodused."'>Pseudo : <input type='text' name='pseudo' required /><br/><br/><input type='submit' name='submit' value='connexion'></form></div>";
+	}
+	else {
+		
+	}
+}
+
 
 // Permet de sécurisé des données, pour plus d'info, aller sur la doc php : http://www.simple-work.tk/doc
 function SW_security_add($string, $type = "text", $sign = null, $replaceby = "") {
@@ -144,5 +159,4 @@ function SW_security_sub($string, $type){
 	else{ echo("<h1 style='background-color:red;color:white'>ERREUR : LE TYPE RENSEIGNER DANS SW_subsecurity EST INCORRECT !"); }
 	
 }
-
 ?>
