@@ -1,0 +1,18 @@
+#direction: right
+#.c: center
+#.feature: dashed italic center
+[0.0.0|
+	[create file]
+    [init github]
+    [start coding]
+]->[0.0.1]
+
+[0.0.1|
+	[add security function]
+    [add "SWException" class for error]
+    [and more like IP ...]
+]->[0.0.2]
+
+[<feature>0.0.2|
+	[on working]
+]
