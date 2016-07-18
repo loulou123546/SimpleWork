@@ -20,6 +20,7 @@
 class SWapp{
 
     public $version = "0.0.1";
+    public $website = "http://www.simple-work.tk"; // here you can find a lot of help an doc
     
     public function getEnv () {
         $env = array(
