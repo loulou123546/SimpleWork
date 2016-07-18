@@ -17,11 +17,25 @@
     or if you have an php error, go on github, download the file and add       require "paths/to/go/on/your/simplework.php";
 */
 
+
+/**
+* Class SWapp
+* class principale de SimpleWork permettant surtout l'intéraction avec le navigateur du client (IP, OS, browser, ...)
+*/
 class SWapp{
 
+    /**
+    * @var string $version version de SimpleWork
+    */
     public $version = "0.0.1";
+    /**
+    * @var string $website Lien du site
+    */
     public $website = "http://www.simple-work.tk"; // here you can find a lot of help an doc
     
+    /**
+    * @return array tableau contenant des info sur l'ordi du client et le serveur
+    */
     public function getEnv () {
         $env = array(
             'IPclient' => getIP(),
@@ -33,6 +47,9 @@ class SWapp{
         return $env;
     }
 
+    /**
+    * @return string retourne l'addresse IP du client
+    */
     public function getIP() {
         $ipaddress = '';
         if (isset($_SERVER['HTTP_CLIENT_IP']))
@@ -52,6 +69,10 @@ class SWapp{
         return $ipaddress;
     }
 
+    /**
+    * @param boolean $generic true pour n'avoir que l'os, false pour avoir la distribution (si os = linux)
+    * @return string retourne l'os du client
+    */
     public function getOS ($generic = true) {
         $os = "unknown";
         $distrib = null;
@@ -82,6 +103,10 @@ class SWapp{
         }
     }
 
+    /**
+    * @param boolean $fullename true pour le nom complet, false pour le raccourci
+    * @return string retourne le navigateur du client
+    */
     public function getBrowser ($fullname = false) {
         $browser = "unknown";
         $lite = "unknown";
@@ -120,6 +145,9 @@ class SWapp{
         }
     }
 
+    /**
+    * @return integer retourne 64 si l'os est un 64bits, 32 si c'est un 32bits
+    */
     public function getArch () {
         $info = $_SERVER['HTTP_USER_AGENT'];
 
