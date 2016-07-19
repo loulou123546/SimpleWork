@@ -1,21 +1,4 @@
 <?php
-/*
-	For contact us : contact@simple-work.tk
-	
-	Official website : http://www.simple-work.tk
-	GitHub project : https://github.com/Simple-Work/SimpleWork
-	
-	This is an open source project, license is here : https://www.mozilla.org/en-US/MPL/2.0/
-
-
-	This code is part of "simplework"
-
-	You can find exemple, documentation and tutorials in us website
-
-
-	for use this code, add the following code           require "http://www.public.simple-work.tk/php/simplework.php";
-    or if you have an php error, go on github, download the file and add       require "paths/to/go/on/your/simplework.php";
-*/
 
 /**
 * Class SWtext
