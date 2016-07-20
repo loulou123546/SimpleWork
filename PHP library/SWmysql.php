@@ -21,11 +21,11 @@ class SWmysql{
     protected $res = null;
     
     /**
-    * @param string $host nom de l'hote mysql_affected_rows
+    * @param string $host nom de l'hote mysql
     * @param string $bdd nom de la base de donnees
     * @param string $pseudo contient le nom d'utilisateur de la bdd
     * @param string $mdp mot de passe pour la bdd
-    * @param string $charset contient le charset (utf-8 par default)
+    * @param string $charset contient le charset (utf8 par default)
     */
     public function __construct ($host = "localhost", $bdd = "", $pseudo = "root", $mdp = "", $charset = "utf8") {
         $this->conn = new PDO ('mysql:host='.$host.';dbname='.$bdd.';charset='.$charset.';', $pseudo, $mdp);
