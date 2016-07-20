@@ -13,7 +13,7 @@ class SWmysql{
     /**
     * @var string|null $req contient la requete
     */
-    protected $req = "";
+    protected $req = null;
 
     /**
     * @var string|null $res contient le resultat de la requete
@@ -32,6 +32,21 @@ class SWmysql{
     }
 
     /**
+    * @param string $requete requete mysql a executer
+    * @return string|array|null|boolean resultat de la requete mysql
+    */
+    public function requete ($requete) {
+        $this->req = $this->conn->query($requete);
+        $this->res = $this->req->fetch();
+        return $this->res;
+    }
+
+}
+
+?>
+
+<!--
+/**
     * @param string $table nom de la/les tables
     * @param string|array|null $colone contient les colones, "*" pour tous
     * @param string|null $condition contient la / les conditions
@@ -57,8 +72,4 @@ class SWmysql{
         $res = $req2->fetch();
         return $res;
     }
-
-
-}
-
-?>
+-->
