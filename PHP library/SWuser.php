@@ -55,6 +55,64 @@ class SWuser {
         self::$DB_col_MDP = $DB_col_MDP;
         self::$DB_charset = $DB_charset;
     }
+
+    /**
+    * @param string $pseudo pseudo de l'utilisateur
+    * @param string $mdp mot de passe de l'utilisateur
+    * @return boolean true s'il existe, false sinon
+    */
+    public static function do_exist ($pseudo, $mdp) {
+        // on se connect
+        $conn = new PDO ('mysql:host='.self::$DB_host.';dbname='.self::$DB_bddname.';charset='.self::$DB_charset.';', self::$DB_pseudo, self::$DB_mdp);
+        //requete mysql
+        $req = $conn->query("SELECT ".self::$DB_col_ID." FROM `".self::$DB_table."` WHERE ".self::$DB_col_PSEUDO." = '".$pseudo."' AND ".self::$DB_col_MDP." = '".$mdp."';");
+        $res = $req->fetch(); // on recupere le resultat
+        return !empty($res); // on renvoie true ou false
+    }
+
+    /**
+    * @param string $pseudo pseudo de l'utilisateur
+    * @param string $mdp mot de passe de l'utilisateur
+    * @return boolean true si la connexion a reussi, false sinon
+    */
+    public static function connect ($pseudo, $mdp) {
+        // on se connect
+        $conn = new PDO ('mysql:host='.self::$DB_host.';dbname='.self::$DB_bddname.';charset='.self::$DB_charset.';', self::$DB_pseudo, self::$DB_mdp);
+        //requete mysql
+        $req = $conn->query("SELECT ".self::$DB_col_ID." FROM `".self::$DB_table."` WHERE ".self::$DB_col_PSEUDO." = '".$pseudo."' AND ".self::$DB_col_MDP." = '".$mdp."';");
+        $res = $req->fetch(); // on recupere le resultat
+        if(!empty($res)){
+            $_SESSION['userPSEUDO'] = $pseudo;
+            $_SESSION['userMDP'] = $mdp;
+            $_SESSION['userID'] = $res[self::$DB_col_ID];
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+    * @return boolean true si la deconnexion a reussi, false sinon
+    */
+    public static function deconnect () {
+        $_SESSION['userPSEUDO'] = null;
+        $_SESSION['userMDP'] = null;
+        $_SESSION['userID'] = null;
+        return true;
+    }
+
+    /**
+    * @return boolean true si l'utilisateur est deja connecter, false sinon
+    */
+    public static function is_connected () {
+        if(isset($_SESSION['userPSEUDO']) && isset($_SESSION['userMDP']) && isset($_SESSION['userID'])){
+            if(!empty($_SESSION['userPSEUDO']) && !empty($_SESSION['userMDP']) && !empty($_SESSION['userID'])){
+                return true;
+            } else { return false; }
+        } else { return false; }
+    }
+
 }
 
 
