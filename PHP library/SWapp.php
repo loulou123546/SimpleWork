@@ -27,7 +27,7 @@ class SWapp{
     /**
     * @var string $version version de SimpleWork
     */
-    public $version = "0.0.1";
+    public $version = "0.0.2";
     /**
     * @var string $website Lien du site
     */
