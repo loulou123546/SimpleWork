@@ -1,7 +1,7 @@
 # Welcome in SimpleWork
 ## Here is my big project, an ... **ecosystem** !
 
-### Actual release : `dev 0.0.1`
+### Actual release : `dev 0.0.2`
 
 #### If you want see the actual state of project, go to `develop` branch 
 
