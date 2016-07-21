@@ -1,6 +1,6 @@
 #direction: right
 #.c: center
-#.feature: dashed italic center
+#.feature: dashed italic center visual=sender
 [0.0.0|
 	[create file]
     [init github]
@@ -13,6 +13,12 @@
     [and more like IP ...]
 ]->[0.0.2]
 
-[<feature>0.0.2|
-	[on working]
+[0.0.2|
+	[transfer all into class]
+    [add SWmysql for simple PDO and mysql]
+    [add SWsecurity for kill hacker :p ]
+]->[0.0.3]
+
+[<feature>0.0.3|
+    [on working]
 ]
