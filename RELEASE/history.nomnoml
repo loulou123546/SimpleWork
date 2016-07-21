@@ -1,0 +1,24 @@
+#direction: right
+#.c: center
+#.feature: dashed italic center visual=sender
+[0.0.0|
+	[create file]
+    [init github]
+    [start coding]
+]->[0.0.1]
+
+[0.0.1|
+	[add security function]
+    [add "SWException" class for error]
+    [and more like IP ...]
+]->[0.0.2]
+
+[0.0.2|
+	[transfer all into class]
+    [add SWmysql for simple PDO and mysql]
+    [add SWsecurity for kill hacker :p ]
+]->[0.0.3]
+
+[<feature>0.0.3|
+    [on working]
+]
